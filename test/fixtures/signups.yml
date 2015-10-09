@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  link: MyString
+  referral: MyString
+  referred: 1
+
+two:
+  email: MyString
+  link: MyString
+  referral: MyString
+  referred: 1
