@@ -1,11 +1,16 @@
+require 'securerandom'
 class SignupsController < ApplicationController
   def new
   	@signup = Signup.new
   end
   def create
+    params[:signup][:link] = SecureRandom.hex(6)
+    params[:signup][:referral] = params[:referral] if params[:referral]
   	@signup = Signup.new(signup_params)
   	if @signup.save
-       redirect_to @signup, notice: 'User was successfully created.'
+      @referrer = Signup.find_by(link: @signup.referral)
+      @referrer.update(referred: @referrer.referred + 1)
+      redirect_to confirmation_path(@signup)
     else
        render :new 
     end
@@ -16,9 +21,12 @@ class SignupsController < ApplicationController
   def index
   	@signups = Signup.all
   end
-
+  def confirmation
+    @signup = Signup.find(params[:id])
+  end
+  
   private
   def signup_params
-  	params.require(:signup).permit(:email)
+  	params.require(:signup).permit(:email, :referral, :link)
   end
 end

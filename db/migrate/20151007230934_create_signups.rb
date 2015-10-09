@@ -4,7 +4,7 @@ class CreateSignups < ActiveRecord::Migration
       t.string :email
       t.string :link
       t.string :referral
-      t.integer :referred
+      t.integer :referred, :default => 0
 
       t.timestamps null: false
     end

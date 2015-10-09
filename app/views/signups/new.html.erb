@@ -5,6 +5,7 @@
 		<%= f.text_field :email %>
 	</p>
 	<p>
+		<%= f.hidden_field :referral, :value => params[:referral]	 if params[:referral]%>
 		<%= f.submit "Sign Up"%>
 	</p>
 <%end%>

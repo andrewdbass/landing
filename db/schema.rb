@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007230934) do
+ActiveRecord::Schema.define(version: 20151009024642) do
 
   create_table "signups", force: :cascade do |t|
     t.string   "email"
     t.string   "link"
     t.string   "referral"
-    t.integer  "referred"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "referred",   default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
