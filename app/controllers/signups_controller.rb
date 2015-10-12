@@ -9,7 +9,9 @@ class SignupsController < ApplicationController
   	@signup = Signup.new(signup_params)
   	if @signup.save
       @referrer = Signup.find_by(link: @signup.referral)
-      @referrer.update(referred: @referrer.referred + 1)
+      @referrer.update(referred: @referrer.referred + 1) if @referrer
+      SignupMailer.status_email(@referrer).deliver 
+      SignupMailer.welcome_email(@signup).deliver
       redirect_to confirmation_path(@signup)
     else
        render :new 

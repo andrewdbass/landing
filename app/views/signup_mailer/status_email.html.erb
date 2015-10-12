@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>A friend you referred just Singed Up</h1>
+    <p>
+    	<% if @signup.referred<5 %>
+    	<%= @signup.referred %>/5 just <%= 5 - @signup.referred%> left!
+    	<%end%>
+    </p>
+
+  </body>
+</html>
